@@ -1,0 +1,20 @@
+[ui]
+username = Morris Tseng <mtseng@mozilla.com>
+
+[defaults]
+qnew = -Ue
+
+[extensions]
+mq =
+rebase =
+
+[diff]
+git = 1
+unified = 8
+showfunc = 1
+
+[alias]
+qstatus = status --rev -2:.
+
+[paths]
+try = ssh://hg.mozilla.org/try

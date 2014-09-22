@@ -1,0 +1,17 @@
+[color]
+  ui = auto
+
+[alias]
+  hgp = show --format=\"From: %an <%ae>%n%s%n%b\" -U8
+
+[user]
+  name = Morris Tseng
+  email = mtseng@mozilla.com
+[core]
+	excludesfile = /Users/Morris/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
