@@ -24,7 +24,9 @@ parse_mq_qapplied() {
 }
 
 parse_mozconfig() {
-  mozconfig -l | sed -e '/[^*]$/d' -e 's/\(.*\)\*/ (mozconfig: \1)/'
+  if hash mozconfig 2>/dev/null; then
+    mozconfig -l | sed -e '/[^*]$/d' -e 's/\(.*\)\*/ (mozconfig: \1)/'
+  fi
 }
 
 # Set a fancy prompt.
