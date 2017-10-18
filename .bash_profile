@@ -1,10 +1,31 @@
+export PATH=/usr/local/opt/icecream/bin:$PATH
+export PATH=/usr/local/opt/icecream/sbin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/Users/Morris/Downloads/adt-bundle-mac-x86_64-20131030/sdk/platform-tools:$PATH
 export PATH=/Users/Morris/Downloads/adt-bundle-mac-x86_64-20131030/sdk/tools:$PATH
 export PATH=/Users/Morris/Downloads/adt-bundle-mac-x86_64-20131030/sdk/build-tools:$PATH
 export PATH=/Users/Morris/mozilla/moz-git-tools:$PATH
+export PATH=/Users/Morris/.mozbuild/version-control-tools/git/commands:$PATH
+export PATH=/Users/Morris/mozilla/depot_tools:$PATH
+export PATH=/Users/Morris/mozilla/git-cinnabar:$PATH
+export PATH=/usr/local/opt/llvm/bin:$PATH
+export PATH="$HOME/.cargo/bin:$PATH"
+source /usr/local/bin/mozconfigwrapper.sh
 alias vim="mvim -v"
+alias grep='grep --color=auto'
+# alias machd='CCACHE_PREFIX="distcc" ./mach'
+alias machd='./mach'
+alias mb='machd build'
+alias mbb='mb binaries'
+alias mr='machd run -P debug'
+alias mrwr='machd run -P wr-no-layer'
+alias mrd='machd run -P debug --debug'
+alias mbf='mb faster'
+alias mc='machd clobber'
+export EDITOR=vim
+export OPENSSL_INCLUDE_DIR=`brew --prefix openssl`/include
+export OPENSSL_LIB_DIR=`brew --prefix openssl`/lib
 
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
   . $(brew --prefix)/etc/bash_completion
@@ -24,6 +45,10 @@ parse_git_branch () {
 # Get currently applied mq name.
 parse_mq_qapplied() {
   hg qapplied 2> /dev/null | sed -n '$p'
+}
+
+parse_mozconfig() {
+  mozconfig -l | sed -e '/[^*]$/d' -e 's/\(.*\)\*/ (mozconfig: \1)/'
 }
 
 # Set a fancy prompt.
@@ -56,6 +81,9 @@ prompt_command () {
   fi
 
   PS1+="${GREEN} `parse_mq_qapplied`"
+  if [ -f moz.configure ]; then
+    PS1+="${GREEN} `parse_mozconfig`"
+  fi
 
   PS1+="\n"
   # Finally, reset the face, and print a prompt sign.

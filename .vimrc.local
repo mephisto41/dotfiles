@@ -34,6 +34,27 @@ if isdirectory(s:clang_library_path)
 endif
 
 let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_lazy_update = 100
+let g:ctrlp_match_current_file = 0
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+let g:ctrlp_user_command = 'ag %s -l -i --nocolor --nogroup
+      \ --ignore .git
+      \ --ignore .svn
+      \ --ignore .hg
+      \ --ignore .DS_Store
+      \ --ignore "**/*.pyc"
+      \ -g ""'
 
 set rtp+=/Users/Morris/mozilla/powerline/powerline/bindings/vim
 nnoremap <leader>o :A<CR>
+nnoremap <leader>i :YcmCompleter GoToImprecise<CR>
+
+let g:ycm_confirm_extra_conf = 0
+let g:ycm_semantic_triggers =  {'h' : ['->', '.']}
+let g:ycm_autoclose_preview_window_after_completion = 1
+let g:syntastic_eruby_ruby_quiet_messages =
+    \ {'regex': 'possibly useless use of a variable in void context'}
+au BufNewFile,BufRead *.mm set filetype=objc
+let g:alternateExtensions_{'mm'} = "h"
+let g:alternateExtensions_{'h'} = "mm,c,cpp,cxx,cc,CC"

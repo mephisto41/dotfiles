@@ -1,2 +1,7 @@
 # Add your local tmux config here
+set-option -g history-limit 30000
 source "/Users/Morris/mozilla/powerline/powerline/bindings/tmux/powerline.conf"
+set -g status-interval 60
+bind-key L send-keys -R \; clear-history
+bind-key Y run "tmux capture-pane -J -S -32768; tmux save-buffer - | reattach-to-user-namespace pbcopy"
+set -sg escape-time 0

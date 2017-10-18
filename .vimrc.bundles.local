@@ -1,0 +1,4 @@
+Plugin 'rust-lang/rust.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'beyondmarc/glsl.vim'
+Plugin 'FelikZ/ctrlp-py-matcher'
